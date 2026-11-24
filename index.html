@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soñarte | Catálogo Mayorista</title>
+    <!-- Tipografías cálidas y modernas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-cream: #FAF7F2;
+            --bg-card: #FFFFFF;
+            --sand: #EFE8DC;
+            --wood-dark: #4A3B32;
+            --wood-medium: #8C6D53;
+            --sage: #6B7B66;
+            --sage-hover: #566452;
+            --text-main: #2E2622;
+            --text-muted: #6E6259;
+            --border-light: #E4DDD3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- ENCABEZADO --- */
+        header {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(74, 59, 50, 0.04);
+        }
+
+        .brand h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--wood-dark);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .brand span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--wood-medium);
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-info-nav {
+            background: none;
+            border: 1px solid var(--wood-medium);
+            color: var(--wood-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-info-nav:hover {
+            background-color: var(--sand);
+        }
+
+        .btn-cart {
+            background-color: var(--sage);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .btn-cart:hover {
+            background-color: var(--sage-hover);
+        }
+
+        .cart-badge {
+            background-color: white;
+            color: var(--sage);
+            border-radius: 50%;
+            padding: 2px 7px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* --- HERO / INICIO --- */
+        .hero {
+            background: linear-gradient(135deg, var(--sand) 0%, #F5EFE6 100%);
+            padding: 3rem 5%;
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .hero h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--wood-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+            font-size: 0.95rem;
+        }
+
+        .quick-highlights {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .highlight-pill {
+            background-color: var(--bg-card);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--wood-dark);
+            border: 1px solid var(--border-light);
+            font-weight: 500;
+        }
+
+        /* --- CONTROLES: BUSCADOR Y CATEGORÍAS --- */
+        .controls-section {
+            padding: 1.5rem 5% 0.5rem 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto 1.5rem auto;
+            display: block;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid var(--border-light);
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: var(--bg-card);
+            outline: none;
+        }
+
+        .search-bar:focus {
+            border-color: var(--wood-medium);
+        }
+
+        .categories-nav {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.8rem;
+            scrollbar-width: thin;
+        }
+
+        .cat-btn {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-light);
+            color: var(--text-muted);
+            padding: 0.5rem 1.1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cat-btn:hover {
+            border-color: var(--wood-medium);
+            color: var(--wood-dark);
+        }
+
+        .cat-btn.active {
+            background-color: var(--wood-dark);
+            color: white;
+            border-color: var(--wood-dark);
+        }
+
+        /* --- GRILLA DE PRODUCTOS --- */
+        .catalog-container {
+            padding: 1.5rem 5% 4rem 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--wood-dark);
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(74, 59, 50, 0.08);
+        }
+
+        .badge-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--wood-dark);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            background-color: var(--sand);
+        }
+
+        .product-info {
+            padding: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-cat {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: var(--wood-medium);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .product-name {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+
+        .product-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--wood-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        /* --- SELECTOR DE VARIANTES --- */
+        .variant-container {
+            margin-bottom: 0.8rem;
+        }
+
+        .variant-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--wood-dark);
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        .variant-select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .variant-select:focus {
+            border-color: var(--wood-medium);
+        }
+
+        .add-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .qty-input {
+            width: 55px;
+            padding: 0.45rem;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            text-align: center;
+            font-family: inherit;
+            font-weight: 600;
+        }
+
+        .btn-add {
+            flex-grow: 1;
+            background-color: var(--sand);
+            color: var(--wood-dark);
+            border: 1px solid var(--wood-medium);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.45rem 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-add:hover {
+            background-color: var(--wood-dark);
+            color: white;
+            border-color: var(--wood-dark);
+        }
+
+        /* --- SECCIÓN INFORMACIÓN IMPORTANTE --- */
+        .info-section {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-light);
+            padding: 3.5rem 5%;
+        }
+
+        .info-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-box {
+            background-color: var(--bg-cream);
+            padding: 1.3rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+        }
+
+        .info-box h4 {
+            color: var(--wood-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .info-box ul {
+            list-style: none;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .info-box ul li {
+            margin-bottom: 0.4rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .info-box ul li::before {
+            content: "•";
+            color: var(--wood-medium);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* --- CARRITO LATERAL (MODAL) --- */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: none;
+            justify-content: flex-end;
+            z-index: 200;
+        }
+
+        .cart-drawer {
+            background: var(--bg-card);
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.9rem;
+        }
+
+        .cart-item-info strong {
+            display: block;
+            color: var(--wood-dark);
+        }
+
+        .cart-item-variant {
+            font-size: 0.78rem;
+            color: var(--wood-medium);
+            display: block;
+        }
+
+        .btn-remove {
+            color: #b84a4a;
+            background: none;
+            border: none;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .cart-footer {
+            border-top: 1px solid var(--border-light);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--wood-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .min-order-alert {
+            font-size: 0.8rem;
+            padding: 0.6rem;
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
+            background-color: #FFF6E5;
+            color: #8A5A00;
+            border: 1px solid #F3D9A4;
+        }
+
+        .min-order-alert.ok {
+            background-color: #EBF3EB;
+            color: #2E5A2E;
+            border-color: #B8D8B8;
+        }
+
+        .btn-whatsapp {
+            width: 100%;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 0.9rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1EBE5D;
+        }
+
+        footer {
+            background-color: var(--wood-dark);
+            color: var(--sand);
+            text-align: center;
+            padding: 2rem 5%;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .hero h2 { font-size: 2rem; }
+            .btn-info-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="brand">
+            <h1>SOÑARTE</h1>
+            <span>Catálogo Mayorista</span>
+        </div>
+        <div class="header-actions">
+            <button class="btn-info-nav" onclick="document.getElementById('info-importante').scrollIntoView({behavior: 'smooth'})">
+                Información importante
+            </button>
+            <button class="btn-cart" onclick="toggleCart()">
+                🛒 Mi Pedido <span class="cart-badge" id="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- INICIO / HERO -->
+    <section class="hero" id="inicio">
+        <h2>Decoración, muebles y objetos en madera</h2>
+        <p>Diseños cálidos y artesanales para potenciar tu local o emprendimiento. Armá tu pedido mayorista online y envianos el detalle directo por WhatsApp.</p>
+        <div class="quick-highlights">
+            <div class="highlight-pill">📦 Envíos a todo el país</div>
+            <div class="highlight-pill">💰 Compra inicial: $80.000 | Reposición: $30.000</div>
+            <div class="highlight-pill">⏱️ Demora de preparación: 7 días hábiles</div>
+        </div>
+    </section> 
+
+<!-- BANNER DE CAMPAÑA / DESTACADOS -->
+    <div style="max-width: 1300px; margin: 1.2rem auto 0 auto; padding: 0 5%;">
+        <div style="background: var(--bg-card); border: 1px solid var(--wood-medium); border-radius: 10px; padding: 0.9rem 1.2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
+            <div>
+                <strong style="color: var(--wood-dark);">🎄 Especial Navidad:</strong>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">Descubrí el Combo Emprendedor y toda la línea navideña en madera.</span>
+            </div>
+            <button class="cat-btn active" onclick="irACategoria('Navidad')">Ver Navidad</button>
+        </div>
+    </div>
+
+    <!-- BUSCADOR Y CATEGORÍAS -->
+    <section class="controls-section">
+        <input type="text" id="search-input" class="search-bar" placeholder="Buscar producto (ej: difusor, vela, bandeja...)" onkeyup="filtrarProductos()">
+        
+<div class="categories-nav" id="categories-container">
+           <button class="cat-btn active" onclick="seleccionarCategoria('Todos', this)">Todos</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Linea Aromática', this)">Linea Aromática</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Palabras de Madera', this)">Palabras de Madera</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Bandejas', this)">Bandejas</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Portasahumerios', this)">Portasahumerios</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Cesteria Nordica', this)">Cesteria Nordica</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Posa Vasos', this)">Posa Vasos</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Percheros', this)">Percheros</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Portavelas', this)">Portavelas</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Canastas Materas', this)">Canastas Materas</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Portallaves', this)">Portallaves</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Detalles Deco', this)">Detalles Deco</button>
+           <button class="cat-btn" onclick="seleccionarCategoria('Navidad', this)">Navidad 🎄</button>
+        </div>    </section>
+
+    <!-- CATÁLOGO DE PRODUCTOS -->
+    <main class="catalog-container">
+        <h3 class="section-title" id="current-category-title">Todos los productos</h3>
+        <div class="products-grid" id="products-grid">
+            <!-- Los productos se cargan automáticamente desde productos.js -->
+        </div>
+    </main>
+
+    <!-- INFORMACIÓN IMPORTANTE -->
+    <section class="info-section" id="info-importante">
+        <div class="info-container">
+            <h3 class="section-title">Información Importante</h3>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h4>💳 Mínimos y Pedidos</h4>
+                    <ul>
+                        <li><strong>Compra mínima inicial:</strong> $80.000</li>
+                        <li><strong>Compra de reposición:</strong> $30.000</li>
+                        <li>Los pedidos se envían por WhatsApp aclarando nombre del producto y cantidad (o podés mandar foto del producto).</li>
+                        <li>Consultá por stock disponible para entrega inmediata.</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h4>🚚 Tiempos y Envíos</h4>
+                    <ul>
+                        <li>Los pedidos tienen una demora de fabricación/preparación de <strong>7 días hábiles</strong>.</li>
+                        <li>Hacemos <strong>envíos a todo el país</strong>.</li>
+                        <li>Enviamos todos los pedidos con el mayor cuidado posible. Una vez despachado, el transporte es responsable del estado y entrega del paquete. Te sugerimos revisar el envío al recibirlo.</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h4>📍 Contacto y Aclaraciones</h4>
+                    <ul>
+                        <li>Estamos en <strong>Av. San Martín 4938, Rosario - Santa Fe</strong>.</li>
+                        <li>WhatsApp: <a href="https://wa.me/5493416653503" target="_blank">341 665-3503</a></li>
+                        <li>Instagram: <a href="https://instagram.com/soniarte_decoracion" target="_blank">@soniarte_decoracion</a></li>
+                        <li>Todas las medidas especificadas en el catálogo son aproximadas, NO exactas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p><strong>SOÑARTE DECORACIÓN</strong> — Av. San Martín 4938, Rosario, Santa Fe.</p>
+        <p style="margin-top: 0.4rem;">¡GRACIAS POR ELEGIRNOS!</p>
+    </footer>
+
+    <!-- CARRITO LATERAL -->
+    <div class="cart-overlay" id="cart-overlay" onclick="if(event.target === this) toggleCart()">
+        <div class="cart-drawer">
+            <div class="cart-header">
+                <h3>Tu Pedido Mayorista</h3>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <p style="color: var(--text-muted); text-align: center; margin-top: 2rem;">Todavía no agregaste productos.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total estimado:</span>
+                    <span id="cart-total-price">$0</span>
+                </div>
+                <div class="min-order-alert" id="min-order-alert">
+                    Recordá: Compra inicial mín. $80.000 | Reposición mín. $30.000
+                </div>
+                <button class="btn-whatsapp" onclick="enviarPedidoWhatsApp()">
+                    Enviar pedido por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONEXIÓN CON TU LISTA DE PRODUCTOS -->
+    <script src="productos.js"></script>
+
+<!-- LÓGICA DE LA PÁGINA -->
+    <script>
+        const NUMERO_WHATSAPP = "5493416653503";
+        let categoriaActual = "Todos";
+        let carrito = [];
+
+        function renderizarProductos(lista) {
+            const grid = document.getElementById("products-grid");
+            grid.innerHTML = "";
+
+            if (lista.length === 0) {
+                grid.innerHTML = "<p style='color: var(--text-muted);'>No se encontraron productos en esta búsqueda.</p>";
+                return;
+            }
+
+            lista.forEach((prod) => {
+                const realIndex = PRODUCTOS.indexOf(prod);
+                const etiquetaHTML = prod.etiqueta ? `<span class="badge-tag">${prod.etiqueta}</span>` : "";
+
+                // Generar opciones de variantes (ej: aromas) si el producto las tiene
+                let varianteHTML = "";
+                if (prod.variantes && prod.variantes.length > 0) {
+                    const opcionesOptions = prod.variantes.map(v => `<option value="${v}">${v}</option>`).join("");
+                    varianteHTML = `
+                        <div class="variant-container">
+                            <label class="variant-label">Elegir aroma / variante:</label>
+                            <select id="variant-${realIndex}" class="variant-select">
+                                ${opcionesOptions}
+                            </select>
+                        </div>
+                    `;
+                }
+
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.innerHTML = `
+                    ${etiquetaHTML}
+                    <img src="img/${prod.imagen}" alt="${prod.nombre}" class="product-img" onerror="this.src='https://placehold.co/400x300/EFE8DC/4A3B32?text=Sin+Foto'">
+                    <div class="product-info">
+                        <span class="product-cat">${prod.categoria}</span>
+                        <h4 class="product-name">${prod.nombre}</h4>
+                        <p class="product-desc">${prod.descripcion || ""}</p>
+                        <div class="product-price">$${prod.precio.toLocaleString("es-AR")}</div>
+                        ${varianteHTML}
+                        <div class="add-controls">
+                            <input type="number" id="qty-${realIndex}" class="qty-input" value="1" min="1">
+                            <button class="btn-add" onclick="agregarAlCarrito(${realIndex})">+ Agregar</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function irACategoria(nombreCategoria) {
+            const botones = document.querySelectorAll(".cat-btn");
+            const objetivo = Array.from(botones).find(b => b.textContent.toLowerCase().includes(nombreCategoria.toLowerCase()));
+            if (objetivo) {
+                seleccionarCategoria(nombreCategoria, objetivo);
+                document.getElementById("current-category-title").scrollIntoView({ behavior: "smooth" });
+            }
+        }
+
+        function seleccionarCategoria(categoria, boton) {
+            categoriaActual = categoria;
+            document.getElementById("current-category-title").innerText = categoria === "Todos" ? "Todos los productos" : categoria;
+
+            document.querySelectorAll(".cat-btn").forEach(btn => btn.classList.remove("active"));
+            if (boton) {
+                boton.classList.add("active");
+            }
+
+            filtrarProductos();
+        }
+
+        function filtrarProductos() {
+            const tituloEl = document.getElementById("current-category-title");
+            if (tituloEl) {
+                tituloEl.innerText = categoriaActual === "Todos" ? "Todos los productos" : categoriaActual;
+            }
+
+            const texto = document.getElementById("search-input").value.toLowerCase();
+            const filtrados = PRODUCTOS.filter(p => {
+                const coincideCat = categoriaActual === "Todos" || p.categoria.toLowerCase() === categoriaActual.toLowerCase();
+                const coincideTexto = p.nombre.toLowerCase().includes(texto) || (p.descripcion && p.descripcion.toLowerCase().includes(texto));
+                return coincideCat && coincideTexto;
+            });
+            renderizarProductos(filtrados);
+        }
+
+        function agregarAlCarrito(index) {
+            const prod = PRODUCTOS[index];
+            const qtyInput = document.getElementById(`qty-${index}`);
+            const cantidad = parseInt(qtyInput.value) || 1;
+
+            // Obtener variante seleccionada si existe
+            let varianteSeleccionada = "";
+            const selectEl = document.getElementById(`variant-${index}`);
+            if (selectEl) {
+                varianteSeleccionada = selectEl.value;
+            }
+
+            // Buscar si ya existe el producto con la misma variante en el carrito
+            const existente = carrito.find(item => item.nombre === prod.nombre && item.variante === varianteSeleccionada);
+            if (existente) {
+                existente.cantidad += cantidad;
+            } else {
+                carrito.push({ ...prod, cantidad, variante: varianteSeleccionada });
+            }
+
+            qtyInput.value = 1;
+            actualizarCarrito();
+
+            const btn = qtyInput.nextElementSibling;
+            const textoOriginal = btn.innerText;
+            btn.innerText = "✓ Agregado";
+            btn.style.backgroundColor = "var(--sage)";
+            btn.style.color = "white";
+            setTimeout(() => {
+                btn.innerText = textoOriginal;
+                btn.style.backgroundColor = "";
+                btn.style.color = "";
+            }, 900);
+        }
+
+        function eliminarDelCarrito(idx) {
+            carrito.splice(idx, 1);
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            const contenedor = document.getElementById("cart-items");
+            const badge = document.getElementById("cart-count");
+            const totalEl = document.getElementById("cart-total-price");
+            const alertEl = document.getElementById("min-order-alert");
+
+            let totalUnidades = 0;
+            let totalDinero = 0;
+
+            if (carrito.length === 0) {
+                contenedor.innerHTML = "<p style='color: var(--text-muted); text-align: center; margin-top: 2rem;'>Todavía no agregaste productos.</p>";
+            } else {
+                contenedor.innerHTML = "";
+                carrito.forEach((item, idx) => {
+                    totalUnidades += item.cantidad;
+                    const subtotal = item.precio * item.cantidad;
+                    totalDinero += subtotal;
+
+                    const varianteTexto = item.variante ? `<span class="cart-item-variant">Aroma/Var: ${item.variante}</span>` : "";
+
+                    contenedor.innerHTML += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <strong>${item.nombre}</strong>
+                                ${varianteTexto}
+                                <span>${item.cantidad} u. x $${item.precio.toLocaleString("es-AR")} = <b>$${subtotal.toLocaleString("es-AR")}</b></span>
+                            </div>
+                            <button class="btn-remove" onclick="eliminarDelCarrito(${idx})">Quitar</button>
+                        </div>
+                    `;
+                });
+            }
+
+            badge.innerText = totalUnidades;
+            totalEl.innerText = `$${totalDinero.toLocaleString("es-AR")}`;
+
+            if (totalDinero >= 80000) {
+                alertEl.className = "min-order-alert ok";
+                alertEl.innerText = "✓ Superás el mínimo de compra inicial ($80.000).";
+            } else if (totalDinero >= 30000) {
+                alertEl.className = "min-order-alert ok";
+                alertEl.innerText = "✓ Válido para compra de reposición (mín. $30.000). Para primera compra el mínimo es $80.000.";
+            } else {
+                alertEl.className = "min-order-alert";
+                alertEl.innerText = "Recordá: Compra inicial mín. $80.000 | Reposición mín. $30.000";
+            }
+        }
+
+        function toggleCart() {
+            const overlay = document.getElementById("cart-overlay");
+            overlay.style.display = overlay.style.display === "flex" ? "none" : "flex";
+        }
+
+        function enviarPedidoWhatsApp() {
+            if (carrito.length === 0) {
+                alert("Tu pedido está vacío. Agregá productos antes de enviar.");
+                return;
+            }
+
+            let mensaje = "Hola *Soñarte*! Quisiera hacer el siguiente pedido mayorista:\n\n";
+            let total = 0;
+
+            carrito.forEach(item => {
+                const sub = item.precio * item.cantidad;
+                total += sub;
+                const varText = item.variante ? ` (Aroma: ${item.variante})` : "";
+                mensaje += `• ${item.cantidad}x ${item.nombre}${varText} - $${sub.toLocaleString("es-AR")}\n`;
+            });
+
+            mensaje += `\n*Total estimado: $${total.toLocaleString("es-AR")}*\n`;
+            mensaje += "\nQuedo a la espera de confirmación de stock y datos para abonar. ¡Gracias!";
+
+            const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, "_blank");
+        }
+
+        renderizarProductos(PRODUCTOS);
+    </script>
+</body>
+</html>
